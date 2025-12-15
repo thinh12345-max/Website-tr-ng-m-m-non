@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Trường Mầm Non SmartKid</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body>
+
+  <!-- Header -->
+  <header>
+    <h1>Trường Mầm Non SmartKid</h1>
+    <p>Nơi đây chúng tôi chăm sóc & phát triển tương lai của các bé yêu</p>
+  </header>
+
+  <!-- Giới thiệu -->
+  <section>
+    <h2>Giới thiệu SmartKid</h2>
+    <p>
+      SmartKid là môi trường giáo dục chất lượng cao dành cho trẻ từ 2 đến 6 tuổi.
+      Chúng tôi chú trọng xây dựng lòng tự tin, sự sáng tạo và tính tự lập cho các bé
+      thông qua các hoạt động học tập và vui chơi toàn diện.
+    </p>
+  </section>
+
+  <!-- Hình ảnh hoạt động -->
+  <section class="gallery">
+    <h2>Hình ảnh hoạt động</h2>
+    
+<div class="fade-slider">
+    <div class="fade-slide active">
+        <img src="/images/a1.jpg" alt="">
+    </div>
+    <div class="fade-slide">
+        <img src="/images/a2.jpg" alt="">
+    </div>
+    <div class="fade-slide">
+        <img src="/images/a3.jpg" alt="">
+    </div>
+    <div class="fade-slide">
+        <img src="/images/a4.jpg" alt="">
+    </div>
+
+    <!-- Nút điều hướng -->
+    <button class="fade-prev">&#10094;</button>
+    <button class="fade-next">&#10095;</button>
+</div>
+
+  </section>
+
+  <script>
+document.addEventListener("DOMContentLoaded", () => {
+  // Elements
+  const fades = Array.from(document.querySelectorAll(".fade-slide"));
+  const btnPrev = document.querySelector(".fade-prev");
+  const btnNext = document.querySelector(".fade-next");
+
+  if (!fades.length) {
+    console.warn("Không tìm thấy .fade-slide nào");
+    return;
+  }
+
+  // index hiện tại
+  let current = 0;
+
+  // hiển thị slide theo index
+  function show(index) {
+    fades.forEach((s, i) => {
+      s.classList.toggle("active", i === index);
+    });
+  }
+
+  // next / prev với wrap-around
+  function next() {
+    current = (current + 1) % fades.length;
+    show(current);
+  }
+  function prev() {
+    current = (current - 1 + fades.length) % fades.length;
+    show(current);
+  }
+
+  // Gắn sự kiện nút nếu tồn tại
+  if (btnNext) {
+    btnNext.addEventListener("click", () => {
+      next();
+      resetAuto();
+    });
+  }
+  if (btnPrev) {
+    btnPrev.addEventListener("click", () => {
+      prev();
+      resetAuto();
+    });
+  }
+
+  // Auto slide (mili giây)
+  let autoMs = 6000; // chỉnh ở đây nếu muốn nhanh/chậm
+  let autoTimer = setInterval(next, autoMs);
+
+  function resetAuto() {
+    clearInterval(autoTimer);
+    autoTimer = setInterval(next, autoMs);
+  }
+
+  // Khởi đầu: hiển thị slide đầu
+  show(current);
+
+  // (tùy chọn) dừng khi hover và tiếp tục khi rời
+  const sliderRoot = document.querySelector(".fade-slider");
+  if (sliderRoot) {
+    sliderRoot.addEventListener("mouseenter", () => clearInterval(autoTimer));
+    sliderRoot.addEventListener("mouseleave", () => { resetAuto(); });
+  }
+});
+</script>
+
+ <!-- Magazine Section -->
+<section class="magazine">
+
+  <!-- Bài số 1: Hình ảnh hoạt động -->
+  <div class="mag-item">
+    <div class="mag-media">
+      <img src="./images/hinh1.jpg" alt="Ngày hội bé vui khỏe">
+    </div>
+
+    <div class="mag-content">
+      <h3>Ngày hội bé vui khỏe</h3>
+      <p>Sự kiện rèn luyện thể chất giúp các bé năng động hơn, phát triển tinh thần đồng đội 
+        và tham gia các hoạt động vận động vui nhộn.</p>
+      <span class="tag">Hình ảnh hoạt động</span>
+    </div>
+  </div>
+
+  <!-- Bài số 2: Video -->
+  <div class="mag-item">
+    <div class="mag-media">
+      <iframe 
+        src="https://www.facebook.com/plugins/video.php?height=314&href=https%3A%2F%2Fwww.facebook.com%2F100078889146204%2Fvideos%2F1832444937368913%2F&show_text=false&width=560&t=0"
+        width="100%" height="300" frameborder="0" allowfullscreen></iframe>
+    </div>
+
+    <div class="mag-content">
+      <h3>Buổi học trải nghiệm sáng tạo</h3>
+      <p>Các bé cùng tham gia buổi học với nhiều hoạt động sáng tạo, vui nhộn và ý nghĩa.</p>
+      <span class="tag">Video hoạt động</span>
+    </div>
+  </div>
+
+  <!-- Bài số 3 -->
+  <div class="mag-item">
+    <div class="mag-media">
+      <img src="./images/hinh2.jpg" alt="Hoạt động ngoài trời - Bé vui khám phá">
+    </div>
+
+    <div class="mag-content">
+      <h3>Hoạt động ngoài trời - Bé vui khám phá</h3>
+      <p>Một ngày tuyệt vời với nhiều bài học thú vị, giúp bé khám phá thiên nhiên xung quanh.</p>
+      <span class="tag">Hoạt động ngoài trời</span>
+    </div>
+  </div>
+
+</section>
+
+  <!-- Footer -->
+  <footer>
+    © 2025 Trường Mầm Non SmartKid
+  </footer>
+
+<script>
+  const slides = document.querySelector(".slides");
+  const images = document.querySelectorAll(".slides img");
+  const prevBtn = document.querySelector(".prev");
+  const nextBtn = document.querySelector(".next");
+
+  let index = 0;
+  const total = images.length;
+  const autoTime = 6000; // ⏳ 7 giây tự chuyển
+
+  function showSlide(i) {
+    index = (i + total) % total;
+    slides.style.transform = `translateX(${-index * 100}%)`;
+  }
+
+  nextBtn.onclick = () => {
+    showSlide(index + 1);
+  };
+
+  prevBtn.onclick = () => {
+    showSlide(index - 1);
+  };
+
+  // Tự động chạy
+  setInterval(() => {
+    showSlide(index + 1);
+  }, autoTime);
+</script>
+
+</body>
+</html>
